@@ -11,6 +11,7 @@ class Display:
 	def __init__(self):
 		self.W = 960
 		self.H = 540
+		self.counter = 0 
 		#self.counts = 0
 		#self.last_x = []
 		#self.last_y = []
@@ -38,7 +39,11 @@ class Display:
 			visualizer.add_geometry(pcd)
 			visualizer.poll_events()
 			visualizer.update_renderer()
+			save_path = "/Users/niriti/slam-python/pt_cloud" + str(self.counter) + ".ply"
+        	
+			o3d.io.write_point_cloud(save_path, pcd)
 			time.sleep(.2)
+			self.counter += 1
 
 	def display_vid(self, img):
 		cv2.imshow("main", img)

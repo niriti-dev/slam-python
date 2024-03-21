@@ -25,6 +25,7 @@ def process(img):
 	intrinsic = np.array([[3000,0,img_w/2],
 				[0,3000,img_h/2],
 				[0,0,1]])
+	
 	tripoints3d = []
 	if points1.ndim != 1 or points2.ndim != 1:
 		points1_norm = np.dot(np.linalg.inv(intrinsic), points1)
@@ -48,7 +49,6 @@ def process(img):
 
 		P2 = np.linalg.inv(np.vstack([P2s[ind], [0, 0, 0, 1]]))[:3, :4]
 		tripoints3d = triangulation(points1_norm, points2_norm, P1, P2)
-
 	else:
 		print("Wrong dimension of array")
 		pass
